@@ -253,13 +253,10 @@ export const TableBody = (config: LunariaConfig, status: LunariaStatus): string 
 	const { dashboard, locales } = config;
 	const links = createGitHostingLinks(config.repository);
 
-	// TODO(HiDeoo) Revert changes to this component.
 	return html`
 		<tbody>
-			${Array.from({ length: 50 }, () => status)
-				.flat()
-				.map(
-					(entry) => html`
+			${status.map(
+				(entry) => html`
 					<tr>
 						<td>
 							${Link(
@@ -270,7 +267,7 @@ export const TableBody = (config: LunariaConfig, status: LunariaStatus): string 
 						${locales.map(({ lang }) => TableContentStatus(config, entry, lang))}
 					</tr>
 				`,
-				)}
+			)}
 		</tbody>
 	`;
 };
